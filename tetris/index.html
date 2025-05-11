@@ -1,0 +1,154 @@
+<html lang="en">
+<head>
+
+
+    <meta charset="UTF-8"/>
+    <script defer src="./main.js"></script>
+    <link href="./styles/style.css" rel="stylesheet"/>
+    <meta content="width=device-width, initial-scale=1.0 user-scalable=no" name="viewport"/>
+    <link href="favico.ico" rel="icon" type="image/x-icon"/>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap"
+        rel="stylesheet"
+    />
+    <title>Tetris</title>
+    <link href="../../images/ico.ico" rel="shortcut icon" type="image/x-icon">
+    <script src="../../storage/js/cloak.js"></script>
+</head>
+<body>
+<div id="musicBox">
+    <div id="musicBoxContainer">
+        <label for="music" id="labelSwitch">🎵</label>
+        <input checked id="musicSwitch" name="music" type="checkbox"/>
+    </div>
+</div>
+<div class="titleImage"><img alt="tetris_logo" src="./img/logo2.png"/></div>
+<!-- <h1>TETRIS</h1> -->
+<div class="mainContainer">
+    <div class="mainMenu" id="mainMenu">
+        <div class="menuButtonContainer">
+            <button class="gameMode" id="enduranceMode">Enduro</button>
+            <div class="menuButtonDescription"><p>No time limit, do your best!</p></div>
+        </div>
+        <div class="menuButtonContainer">
+            <button class="gameMode" id="rushMode">Rush</button>
+            <div class="menuButtonDescription"><p>60s rush to get points.</p></div>
+        </div>
+
+        <div class="menuButtonContainer">
+            <button class="gameMode" id="sprintMode">Sprint</button>
+            <div class="menuButtonDescription"><p>Make 20 lines... Quickly!</p></div>
+        </div>
+
+        <!-- <div class="menuButtonContainer">
+  <button class="gameMode" disabled>Leaderboard</button>
+</div> -->
+    </div>
+    <div class="sidePanel spLeft hide" id="sidePanelLeft">
+        <div class="sidePanelContainer">
+            <div class="sideBox" id="savedTetrominoBox"></div>
+            <h4 class="littleBoxTitle">SAVED</h4>
+            <div class="sideBox score" id="scoreBox">
+                <h3><span id="score">0</span></h3>
+            </div>
+            <h4 class="littleBoxTitle" id="scoreTitle">SCORE</h4>
+            <div class="sideBox score" id="timerBox">
+                <h3 class="big"><span id="timer">0</span></h3>
+            </div>
+            <h4 class="littleBoxTitle" id="timerTitle">TIMER</h4>
+            <div class="instructionBox">
+                <h3>Controls</h3>
+                <div class="instructionBoxText">
+                    <p class="textRight">Move</p>
+                    <p class="textleft">🡄 🡇 🡆</p>
+                </div>
+                <div class="instructionBoxText">
+                    <p class="textRight">Smash</p>
+                    <p class="textleft">🡅</p>
+                </div>
+                <div class="instructionBoxText">
+                    <p class="textRight">↶</p>
+                    <p class="textleft">A</p>
+                </div>
+                <div class="instructionBoxText">
+                    <p class="textRight">↷</p>
+                    <p class="textleft">Z</p>
+                </div>
+                <div class="instructionBoxText">
+                    <p class="textRight">Save</p>
+                    <p class="textleft">E</p>
+                </div>
+            </div>
+        </div>
+        <div class="sidePanelContainer">
+            <button class="playgroundButton" id="backMenu">Menu</button>
+        </div>
+    </div>
+    <div class="playgroundContainer hide" id="playgroundContainer">
+        <div id="gamePaused"><h2>GAME PAUSED</h2></div>
+        <div id="endGame">
+            <div class="innerContainer">
+                <h2 id="endGameTitle">GAME OVER</h2>
+                <h3><span id="finalScore"></span> <span id="scoreUnit"></span></h3>
+            </div>
+        </div>
+        <div class="grid" id="playground"></div>
+    </div>
+    <div class="sidePanel spRight hide" id="sidePanelRight">
+        <div class="sidePanelContainer">
+            <div class="sideBox" id="nextTetrominoBox"></div>
+            <h4 class="littleBoxTitle">NEXT</h4>
+            <div class="sideBox speed" id="speedBox">
+                <h3 class="big"><span id="speed">0</span></h3>
+            </div>
+            <h4 class="littleBoxTitle">SPEED</h4>
+            <div class="sideBox score">
+                <h3><span id="lines">0</span></h3>
+            </div>
+            <h4 class="littleBoxTitle">LINES</h4>
+        </div>
+
+        <div class="sidePanelContainer">
+            <button class="playgroundButton buttonPulse" id="startButton">Start</button>
+            <button class="playgroundButton" id="resetButton">Reset</button>
+        </div>
+    </div>
+</div>
+<div id="touchControlContainer">
+    <div class="controlBlock controlContainerLeft">
+        <div class="controlUp controlArrowContainer">
+            <button class="controlButton" id="controlUp"></button>
+        </div>
+        <div class="controlLeft controlArrowContainer">
+            <button class="controlButton" id="controlLeft"></button>
+        </div>
+        <div class="controlMiddle controlArrowContainer">
+            <div class="controlButton"></div>
+        </div>
+        <div class="controlRight controlArrowContainer">
+            <button class="controlButton" id="controlRight"></button>
+        </div>
+        <div class="controlDown controlArrowContainer">
+            <button class="controlButton" id="controlDown"></button>
+        </div>
+    </div>
+    <div class="controlBlock controlContainerRight">
+        <div class="controlRotLeft controlButtonContainer">
+            <button class="controlButton" id="controlRotLeft"></button>
+        </div>
+        <div class="controlRotRight controlButtonContainer">
+            <button class="controlButton" id="controlRotRight"></button>
+        </div>
+        <div class="controlSave controlButtonContainer">
+            <button class="controlButton" id="controlSave"></button>
+        </div>
+    </div>
+</div>
+<footer>
+    <p>
+        A game by Nintendo ® - Developed by
+        <a href="https://github.com/larprad" target="blank">Larprad</a>
+    </p>
+</footer>
+</body>
+</html>
