@@ -1,0 +1,41 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Trigger deployment on push to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Git
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+
+      - name: Deploy to GitHub Pages
+        run: |
+          # Create a gh-pages branch
+          git checkout --orphan gh-pages
+          
+          # Remove all existing files from the gh-pages branch (except the .git folder)
+          git rm -rf .
+
+          # Copy everything from the main branch (repository) into the gh-pages branch
+          cp -r * . # Copy all files from the repository to the root
+
+          # Add everything and commit
+          git add .
+          git commit -m "Deploy to GitHub Pages"
+
+          # Push the files to the gh-pages branch
+          git push origin gh-pages --force
