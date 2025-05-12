@@ -1,0 +1,58 @@
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js (or other environment)
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # Adjust the Node.js version based on your needs
+
+      - name: Install dependencies
+        run: npm install  # or other package manager commands
+
+      - name: Build the project
+        run: npm run build  # Replace with your build command
+
+      - name: Upload artifacts
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./build  # Adjust the path to match your build output directory
+
+  # Deploy job
+  deploy:
+    needs: build  # Ensures the deploy job runs only after the build job completes
+
+    permissions:
+      pages: write    # Required permission to deploy to GitHub Pages
+      id-token: write # Allows verification that the deployment is legitimate
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}  # Outputs the page URL after deployment
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up deployment environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # Adjust this version based on your needs
+
+      - name: Install dependencies (if needed for deployment)
+        run: npm install  # Only if needed for deployment (can be skipped if already done in the build job)
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4  # Make sure to specify the correct version (v4 or another version)
+        with:
+          branch: gh-pages  # The branch you want to deploy to (adjust if needed)
+          folder: ./build    # Directory with the build output to deploy
+
+      - name: Output deployment URL
+        run: echo "Deployment URL: ${{ steps.deployment.outputs.page_url }}"
