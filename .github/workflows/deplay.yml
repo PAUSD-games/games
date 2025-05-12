@@ -30,8 +30,9 @@ jobs:
           # Remove all existing files from the gh-pages branch (except the .git folder)
           git rm -rf .
 
-          # Copy everything from the main branch (repository) into the gh-pages branch
-          cp -r ./ ./dist # Copy all files and directories to the `dist` folder (or `./` itself)
+          # Copy all files and directories into 'dist', excluding the 'dist' directory itself
+          # You can use `rsync` to avoid copying the 'dist' folder into itself
+          rsync -av --exclude='./dist' ./ ./dist/
 
           # Add everything and commit
           git add .
