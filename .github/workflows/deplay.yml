@@ -31,7 +31,7 @@ jobs:
           git rm -rf .
 
           # Copy everything from the main branch (repository) into the gh-pages branch
-          cp -r * . # Copy all files from the repository to the root
+          cp -r ./ ./dist # Copy all files and directories to the `dist` folder (or `./` itself)
 
           # Add everything and commit
           git add .
